@@ -8,16 +8,25 @@ namespace FCApp.Core
 {
     public static class SuppliedHashFunction
     {
-        public static long Hash(string s)
+        public static long Hash(string stringToHash)
         {
-            long h = 7;
-            string letters = "acdegilmnoprstuw";
+            var hashResult = ProblemConstants.StartingNumber;
+            const string Letters = ProblemConstants.RangeOfLettersUsed;
 
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < stringToHash.Length; i++)
             {
-                h = (h * 37 + letters.IndexOf(s[i]));
+                hashResult = (hashResult * ProblemConstants.MagicNumber + Letters.IndexOf(stringToHash[i]));
             }
-            return h;
+
+            return hashResult;
         }
+    }
+
+    public static class ProblemConstants
+    {
+        public const string RangeOfLettersUsed = "acdegilmnoprstuw";
+        public const long StartingNumber = 7;
+        public const int MagicNumber = 37;
+
     }
 }
